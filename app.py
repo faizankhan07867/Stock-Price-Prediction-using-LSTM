@@ -96,6 +96,15 @@ if load_button:
     # Remove invalid rows
     df = df[df["Date"].notna()].copy()
 
+    # Clean column names
+    df.columns = [
+        str(col).strip()
+        for col in df.columns
+    ]
+
+    # Remove duplicate column names
+    df = df.loc[:, ~df.columns.duplicated(keep="first")].copy()
+
     # Convert numeric columns
     numeric_cols = ["Close", "Open", "High", "Low", "Volume"]
 
@@ -106,7 +115,7 @@ if load_button:
                 errors="coerce"
             )
 
-    # Remove rows with invalid values
+    # Remove rows with invalid Close price
     df = df.dropna(subset=["Close"])
 
     st.title(f"📈 {symbol} Stock Dashboard")
