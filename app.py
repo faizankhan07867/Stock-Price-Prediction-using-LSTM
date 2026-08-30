@@ -6,7 +6,7 @@ import streamlit as st
 import plotly.graph_objects as go
 
 from config import *
-from lstm import create_model
+from models.lstm import create_model
 from dataset import StockDataset
 
 # ======================================
