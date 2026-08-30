@@ -98,18 +98,18 @@ if load_button:
 
     # Convert numeric columns
     
-   numeric_cols = ["Close", "Open", "High", "Low", "Volume"]
+     numeric_cols = ["Close", "Open", "High", "Low", "Volume"]
 
-   for col in numeric_cols:
-       if col in df.columns:
-          # Handle duplicate column names
-          if isinstance(df[col], pd.DataFrame):
-              df[col] = df[col].iloc[:, 0]
+     for col in numeric_cols:
+         if col in df.columns:
+             # Handle duplicate column names
+             if isinstance(df[col], pd.DataFrame):
+                 df[col] = df[col].iloc[:, 0]
 
-          df[col] = pd.to_numeric(
-              df[col],
-              errors="coerce"
-          )
+            df[col] = pd.to_numeric(
+                df[col],
+                errors="coerce"
+            )
 
     # Remove rows with invalid values
     df = df.dropna(subset=["Close"])
